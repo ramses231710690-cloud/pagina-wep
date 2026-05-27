@@ -1,0 +1,589 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Arial Black', sans-serif; /* Usamos una fuente gruesa por defecto */
+}
+
+.inicio {
+    /* Cambia 'fondo1.png' por el nombre real de tu imagen en la carpeta img */
+    background: url('../img/fondo1.png.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.main-container {
+    text-align: center;
+    color: white;
+}
+
+.titulo {
+    font-size: 80px;
+    color: #A855F7; /* Morado claro */
+    line-height: 0.9;
+    /* Este es el efecto de borde azul neón */
+    -webkit-text-stroke: 2px #22D3EE; 
+    text-shadow: 4px 4px 0px #7E22CE;
+    margin-bottom: 40px;
+}
+
+.integrantes {
+    font-size: 18px;
+    font-weight: bold;
+    color: #000; /* Texto negro como en tu imagen original */
+    margin-bottom: 50px;
+    line-height: 1.2;
+}
+
+.boton-play {
+    background-color: #7E22CE; /* Morado fuerte */
+    color: white;
+    text-decoration: none;
+    padding: 15px 100px;
+    font-size: 32px;
+    border-radius: 25px;
+    display: inline-block;
+    transition: 0.3s;
+    box-shadow: 0px 8px 15px rgba(0,0,0,0.2);
+}
+
+.boton-play:hover {
+    transform: scale(1.1);
+    background-color: #9333EA;
+}
+/* Pantalla de Niveles */
+.pantalla-niveles {
+    background: url('../img/fondo2.jpg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.subtitulo-pixel {
+    font-size: 40px;
+    color: #FF7ED4; /* Rosa neón de tu imagen */
+    -webkit-text-stroke: 1px #22D3EE;
+    margin-bottom: 30px;
+}
+
+.lista-botones {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.btn-nivel {
+    background-color: #8B5CF6; /* Morado intermedio */
+    color: #22D3EE; /* Texto cian */
+    text-decoration: none;
+    font-size: 35px;
+    padding: 15px 50px;
+    border-radius: 20px;
+    width: 400px;
+    border: 3px solid transparent;
+    transition: 0.3s;
+}
+
+.btn-nivel:hover {
+    border-color: #22D3EE;
+    transform: scale(1.05);
+}
+
+.diccionario {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #8B5CF6;
+    padding: 10px;
+    border-radius: 15px;
+}
+/* --- Estilos para la Versión 2 de la Página Principal --- */
+
+.main-container-v2 {
+    display: flex;
+    flex-direction: column; /* Apila los elementos uno debajo de otro */
+    align-items: center;    /* Centra todos los hijos horizontalmente */
+    width: 100%;            /* Ocupa todo el ancho */
+    min-height: 100vh;      /* Ocupa al menos toda la altura de la pantalla */
+}
+
+/* Encabezado */
+.header-v2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 90%;
+    margin-bottom: 20px;
+}
+
+.gato-logo {
+    width: 120px; /* Ajusta el tamaño del gato */
+    height: auto;
+}
+
+.titulo-v2 {
+    font-size: 60px; /* Un poco más pequeño para caber con el gato */
+    color: #A855F7;
+    line-height: 0.9;
+    -webkit-text-stroke: 2px #22D3EE;
+    text-shadow: 4px 4px 0px #7E22CE;
+}
+
+/* Carrusel */
+.carousel-container {
+    position: relative;
+    width: 90%;             /* Ancho largo como querías */
+    max-width: 1100px;      /* Para que no se vea gigante en monitores grandes */
+    height: 350px;          /* Altura del carrusel */
+    
+    /* EL TRUCO PARA CENTRAR: */
+    margin: 40px auto;      /* Centrado horizontal (auto) y 40px de espacio arriba/abajo */
+    
+    border-radius: 20px;
+    overflow: hidden;
+    background: transparent;
+    box-shadow: 0px 10px 30px rgba(0,0,0,0.3); /* Sombra suave para darle relieve */
+}
+
+.carousel-slide {
+    display: none;      /* OCULTA TODAS POR DEFECTO */
+    position: absolute; /* LAS ENCIMA UNA SOBRE OTRA */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.active {
+    display: block !important;
+}
+
+.carousel-slide.active {
+    display: block;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Animación para que no cambie tan brusco */
+@keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+}
+
+.slide {
+    display: none;      /* OCULTA TODAS LAS IMÁGENES */
+    width: 100%;
+    height: 100%;
+}
+
+.slide.active {
+    display: block;
+    animation: fade 0.5s;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill; /* Asegura que la imagen llene el espacio sin deformarse */
+}
+
+/* Botones del carrusel (Opcionales) */
+
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    padding: 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+/* Botón PLAY actualizado */
+.boton-play-v2 {
+    background-color: #7E22CE;
+    color: white;
+    text-decoration: none;
+    padding: 15px 80px;
+    font-size: 30px;
+    border-radius: 25px;
+    margin-bottom: 40px;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.boton-play-v2:hover {
+    transform: scale(1.05);
+    background-color: #9333EA;
+}
+
+/* Pie de Página de Contacto */
+.footer-contacto {
+    width: 90%;
+    background-color: rgba(168, 85, 247, 0.4); /* Morado traslúcido como en la imagen */
+    border: 2px solid #22D3EE; /* Borde cian */
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    color: black;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    border-radius: 10px;
+    margin-top: auto; /* Empuja el footer hacia abajo */
+    margin-bottom: 20px;
+}
+
+.contacto-col {
+    width: 23%;
+}
+
+.contacto-col h3 {
+    margin-top: 0;
+    font-size: 16px;
+    color: black;
+}
+
+.web-link {
+    font-weight: bold;
+}
+/* Pantalla Diccionario */
+.pantalla-diccionario {
+    background: url('../img/fondo2.jpg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.contenedor-blanco {
+    background-color: white;
+    width: 85%;
+    max-width: 900px;
+    padding: 40px;
+    border-radius: 10px;
+    position: relative;
+    text-align: center;
+    box-shadow: 0px 10px 30px rgba(0,0,0,0.5);
+}
+
+.banner-diccionario {
+    background-color: #8B5CF6;
+    color: #22D3EE;
+    font-size: 24px;
+    padding: 10px 30px;
+    border-radius: 15px;
+    display: inline-block;
+    position: absolute;
+    top: -20px;
+    left: 20px;
+    font-weight: bold;
+}
+
+.cuadricula-diccionario {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Crea las dos columnas */
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn-dicc {
+    background-color: #7E22CE;
+    color: white;
+    text-decoration: none;
+    padding: 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.btn-dicc:hover {
+    background-color: #22D3EE;
+    color: #7E22CE;
+}
+
+.fila-final {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.btn-regresar {
+    display: inline-block;
+    margin-top: 25px;
+    color: #7E22CE;
+    text-decoration: underline;
+    font-weight: bold;
+}
+/* Estilos para la Tabla de Pronombres */
+.titulo-tabla {
+    font-family: 'Arial Black', sans-serif;
+    margin-top: 30px;
+    font-size: 24px;
+    color: black;
+}
+
+.tabla-idiomas {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.tabla-idiomas thead th {
+    background-color: #E0D3FF; /* Morado muy claro */
+    border: 2px solid #B794F4;
+    padding: 10px;
+    color: black;
+}
+
+.tabla-idiomas td {
+    border: 2px solid #B794F4;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    color: #4A5568;
+    font-size: 14px;
+}
+
+/* Efecto cebra opcional para que se vea más limpio */
+.tabla-idiomas tbody tr:nth-child(even) {
+    background-color: #F7FAFC;
+}
+/* --- Estilos para la Pantalla de Ejercicio V2 --- */
+
+.pantalla-ejercicio {
+    background: url('../img/fondo2.jpg.jpg') no-repeat center center fixed;
+    background-size: cover;
+
+    margin: 0;
+    font-family: Arial, sans-serif;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Permite que la página crezca si es necesario */
+    padding: 50px 0; /* Espacio extra para que no pegue a los bordes */
+}
+
+.main-container-v2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    max-width: 900px;
+}
+
+.header-ejercicio {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 30px; /* Espacio real entre el header y el cuadro blanco */
+}
+
+/* 2. EL CUADRO BLANCO: Ya no necesita un margin-top gigante */
+.contenedor-blanco-v2 {
+    background-color: white;
+    
+    /* ANCHO CORREGIDO: */
+    width: 90%;             /* Vuelve a ocupar casi todo el ancho */
+    max-width: 850px;       /* Pero no más de esto en pantallas grandes */
+    
+    padding: 40px;
+    border-radius: 20px;
+    position: relative;
+    text-align: center;
+    box-shadow: 0px 10px 30px rgba(0,0,0,0.3);
+    
+    /* Para centrarlo si flexbox no lo hace por sí solo */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.banner-nivel {
+    background-color: #A855F7;
+    color: #22D3EE;
+    padding: 12px 25px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 18px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+}
+
+.contenedor-vidas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    
+    /* AUMENTAMOS EL PADDING: para que la caja blanca sea más alta y ancha */
+    padding: 15px 30px; 
+    
+    border-radius: 30px; /* Bordes bien redondeados */
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+    
+    /* ESPACIADO ENTRE GATITOS: Les damos un poco de aire */
+    gap: 12px; 
+    
+    /* IMPORTANTE: Asegúrate de que no haya un width rígido que los encoja */
+    width: auto; 
+    max-width: none; 
+}
+
+/* 2. Modifica el tamaño de la imagen del gatito */
+.gato-vida {
+    /* AUMENTAMOS EL TAMAÑO: Pruébalo con 40px o incluso 45px */
+    width: 40px; 
+    height: auto; /* Mantiene la proporción */
+    
+    /* Evita que se deformen si el contenedor intenta aplastarlos */
+    flex-shrink: 0; 
+}
+
+/* Para cambiar a la vida con X (imagen 2) */
+.gato-vida.perdida {
+    content: url('../img/gato-vida-x.png');
+}
+
+.diccionario-flotante a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Pregunta y Respuestas */
+.cuadro-pregunta {
+    background-color: #B2EBF2; /* Cian muy claro */
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    padding: 15px;
+}
+
+.pregunta-texto {
+    font-size: 24px;
+    color: black;
+    margin: 0;
+    font-weight: bold;
+}
+
+.pregunta-texto .destacado {
+    text-decoration: underline;
+}
+
+.cuadricula-respuestas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    
+    /* ANCHO CORREGIDO: */
+    width: 100%;            /* Ocupa el 100% de la caja blanca */
+    
+    margin-top: 25px;
+}
+
+.btn-respuesta {
+    /* COLOR DE FONDO (Beige claro como en tu dibujo) */
+    background-color: #FFF3E0; 
+    
+    color: black;           /* Texto negro */
+    border: none;           /* Sin borde gris feo */
+    
+    /* TAMAÑO Y FORMA */
+    width: 80%;             /* Anchos pero sin tocar los bordes */
+    max-width: 500px;       /* Para que no se estiren de más en PC */
+    padding: 15px;          /* Más altos para que sea fácil picar */
+    border-radius: 25px;    /* Muy redondeados */
+    
+    /* FUENTE */
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;        /* Que salga la manita */
+    
+    /* ANIMACIÓN */
+    transition: background-color 0.3s, transform 0.2s;
+    font-family: Arial, sans-serif; /* Misma fuente que el resto */
+}
+
+.btn-respuesta:hover {
+    background-color: #A855F7;
+    color: white;
+}
+
+.btn-respuesta:active {
+    transform: scale(0.97);
+}
+
+/* El contador se queda en su esquina */
+.contador-preguntas {
+    position: absolute;
+    bottom: 20px;
+    right: 25px;
+    background-color: #BDBDBD;
+    padding: 5px 15px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+/* EL BOTÓN REGRESAR: Ahora estará afuera y abajo */
+.btn-regresar {
+    display: inline-block;
+    margin-top: 30px;
+    background-color: #A855F7;
+    color: white !important;
+    padding: 12px 40px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+}
+
+.btn-regresar:hover {
+    background-color: #8B5CF6;
+    transform: scale(1.05);
+}
+
+/* --- ESTILOS PARA LOS BOTONES DE SELECCIÓN DE NIVEL --- */
+.boton-nivel-v2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Cambiamos el ancho fijo por uno relativo */
+    width: 90%;              
+    max-width: 500px;        /* Esto evitará que se vea gigante */
+    height: 70px;            /* Un poco más bajo para que sea elegante */
+    margin: 15px auto;       
+    background-color: #a855f7; 
+    color: #00f2ff;          
+    text-align: center;
+    text-decoration: none;   
+    font-size: 28px;         /* Tamaño de letra equilibrado */
+    font-weight: bold;
+    border-radius: 20px;     
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.boton-nivel-v2:hover {
+    transform: scale(1.05);  
+}
